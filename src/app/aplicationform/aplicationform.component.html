@@ -1,0 +1,77 @@
+  <div class="container">
+        <form class="eventBookingForm py-3" novalidate (ngSubmit)="onSubmit(f.value)" #f="ngForm">
+            <h1 class="text-center formheader "> Form For Admission</h1>
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                    <label for="firstName" class="font-weight-bold">First Name<sup class="text-danger">*</sup></label>
+                    <input type="text" class="form-control" name="firstName" ngModel #firstName="ngModel" pattern="^[a-zA-Z][a-zA-Z ]*$" maxlength="20" id="firstName" placeholder="Name" required>
+                    <span class="text-danger" *ngIf="firstName.errors && (firstName.dirty || firstName.touched)">
+                        <p class="small m-0" *ngIf="firstName.errors.required">First name is required</p>
+                        <p class="small m-0" *ngIf="firstName.errors.pattern">First name not allow numbers and special characters</p>
+                     </span>
+                </div>
+
+                <div class="form-group col-md-6">
+                    <label for="lastName" class="font-weight-bold">Last Name<sup class="text-danger">*</sup></label>
+                    <input type="text" class="form-control" name="lastName" ngModel #lastName="ngModel" pattern="^[a-zA-Z][a-zA-Z ]*$" maxlength="20" id="lastName" placeholder="Last Name" required>
+                    <span class="text-danger" *ngIf="lastName.errors && (lastName.dirty || lastName.touched)">
+                        <p class="small m-0" *ngIf="lastName.errors.required">Last name is required</p>
+                        <p class="small m-0" *ngIf="lastName.errors.pattern">Last name not allow numbers and special characters</p>
+                     </span>
+                </div><br><br>
+
+                <div class="form-group col-md-6">
+                    <label for="classType" class="font-weight-bold">Class<sup class="text-danger">*</sup></label>
+                    <input type="text" class="form-control" pattern="[a-zA-Z0-9-]+" maxlength="3" id="classType" name="classType" ngModel #classType="ngModel" placeholder="Class" required>
+                    <span class="text-danger" *ngIf="classType.errors && (classType.dirty || classType.touched)">
+                        <p class="small m-0" *ngIf="classType.errors.required">Class is required</p>
+                        <p class="small m-0" *ngIf="classType.errors.pattern">Class not allow special characters - format (5A or 2B) </p>
+                     </span>
+                </div>
+
+              <div class="form-group col-md-6">
+                    <label for="yearOfPassing" class="font-weight-bold">Year of Passing<sup class="text-danger">*</sup></label>
+                    <input type="text" class="form-control" pattern="[0-9]{4}" maxlength="4" id="yearOfPassing" (keyup)="validateYearOfPassing($event)" name="yearOfPassing" ngModel #yearOfPassing="ngModel" placeholder="Year of Passing" required>
+                    <span class="text-danger" *ngIf="yearOfPassing.errors && (yearOfPassing.dirty || yearOfPassing.touched)">
+                        <p class="small m-0" *ngIf="yearOfPassing.errors.required">Year of passing is required</p>
+                        <p class="small m-0" *ngIf="yearOfPassing.errors.pattern">Year of passing not allow special characters - format (2016) </p>
+                     </span>
+                    <span class="text-danger" *ngIf="(yearOfPassing.dirty || yearOfPassing.touched)">
+                         <p class="small m-0" *ngIf="!compareYear">Entered invalid year of pass</p>
+                     </span>
+                </div>
+
+                <div class="form-group col-md-12">
+                    <label for="percentageOfMarks" class="font-weight-bold">Percentage(%) of Marks<sup class="text-danger">*</sup></label>
+                    <input type="text" class="form-control" pattern="[0-9]+" maxlength="3" id="percentageOfMarks" name="percentageOfMarks" ngModel #percentageOfMarks="ngModel" placeholder="Year of Passing" required>
+                    <span class="text-danger" *ngIf="percentageOfMarks.errors && (percentageOfMarks.dirty || percentageOfMarks.touched)">
+                        <p class="small m-0" *ngIf="percentageOfMarks.errors.required">Percentage(%) of marks is required</p>
+                        <p class="small m-0" *ngIf="percentageOfMarks.errors.pattern">Percentage(%) of mark not allow special characters - format (1 - 100) </p>
+                     </span>
+                </div>
+
+            </div>
+
+
+
+            <div class="eventFormSubmitBtns clearfix">
+                <a class="btn btn-cancel float-right mx-2" routerLink="/events">Cancel</a>
+                <button type="submit" type="submit" [disabled]="f.invalid || !compareYear" class="btn btn-booking float-right mx-2">Submit</button>
+            </div>
+
+
+        </form>
+    </div>
+    <div class="container-fluid" *ngIf="registarionData">
+        <div class="row">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 py-3 bookingSuccess" *ngIf="statusMessage">
+                <div class="alert alert-success alert-dismissible fade show" role="alert">
+                    <p class="text-success text-center">Your Registration Is Successfull</p>
+                    <a type="button" class="close" data-dismiss="alert" routerLink="/events" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </a>
+                </div>
+
+            </div>
+        </div>
+    </div>

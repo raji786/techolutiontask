@@ -1,0 +1,37 @@
+<div>
+    <table  class="table table-bordered">
+        <thead>
+            <tr class="bold-text"><th>student Result Board</th>
+            <th></th>
+            <th></th>
+            <th></th>
+        </tr>
+            <tr>
+                <th>student name</th>
+                <th>Roll number</th>
+                <th>Total marks</th>
+                <th>status</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let a of data|sort:{property: 'name'}; let i = index">
+                <td>
+                    {{a.name}}
+                </td>
+
+                <td>{{a.rollNumber}}</td>
+
+                <td>{{computeMarks(a.marks.Maths , a.marks.English , a.marks.Science)}}</td>
+
+                <td>
+                   
+                    <a class="btn btn-white btn-sm btn-rounded" href="javascript:void(0);">
+                        <strong *ngIf="passArray[i]==true" class=" text-success">pass</strong>
+                        <strong *ngIf="passArray[i]==true" class="black"></strong>
+                        <strong *ngIf="passArray[i]==false" class=" text-danger">Fail</strong> 
+                    </a>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div> 

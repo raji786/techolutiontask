@@ -142,7 +142,7 @@ export class DataserviceService {
               "rollNumber":"KV2017-6A3"
               },
               {
-                "name":"ZElina",
+                "name":"Zelina",
                 "marks":{
                 "Maths":"22",
                 "English":"21",

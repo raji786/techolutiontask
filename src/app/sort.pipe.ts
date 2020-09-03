@@ -8,8 +8,8 @@ import { Pipe, PipeTransform } from '@angular/core';
   transform(value: Array<any>, args?:any): any {
     console.log(value)
     return value.sort((a,b)=>{
-      let x = a.Name;
-      let y = b.Name;
+      let x = a.name;
+      let y = b.name;
       if(x<y){
         return -1;
       }
